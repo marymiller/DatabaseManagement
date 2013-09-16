@@ -1,0 +1,24 @@
+//Homework 1 
+
+//Mary Miller
+
+
+//Question 1. List all data for all customers.
+
+//Question 2. List the name and city of agents named Smith.
+
+//Question 3. List pid, name, and quantity of products costing more than US$1.25
+
+//Question 4. List the ordno and aid of all orders.
+
+//Question 5. List the names and cities of customers not in Dallas.
+
+//Question 6. List names of agents in New York or Newark.
+
+//Question 7. List all data for products not in New York or Newark that cost us$1 or less.
+
+//Question 8. List all data for orders in January or March.
+
+//Question 9. List all data for orders in February less than us$100
+
+//Question 10. List all orders from the customer whose cid is C005. 
