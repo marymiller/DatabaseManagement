@@ -3,13 +3,33 @@
 
 
 --1. Get the cities of agents booking an order for customers c002. Use a subquery
-
+select city
+from agents
+where aid in (select aid
+	      from orders
+	      where cid = 'c002')
 --2. Get the cities of agents booking an order for customer c002. This time use joins; no subqueries.
-
+select a.city
+from agents a,
+     orders o
+where a.aid = o.aid
+  and o.cid = 'c002'
 --3. Get the pids of products ordered through any agent who makes at least one order for a customer in Kyoto. Use subqueries
-
+select distinct pid
+from orders 
+where aid in (select aid
+	      from orders
+	      where cid in (select cid
+		            from customers
+			    where city = 'Kyoto'))
+order by pid
 --4. Get the pids of products ordered through any agent who makes at least one order for a customer in Kyoto. Use joins thus time; no subqueries
-
+select distinct o.pid
+from orders o,
+     customers c
+where c.city = 'Kyoto'
+  and c.cid = o.cid
+  and o.pid = 
 --5. Get the names of customers who have never placed an order. Use a subquery.
 
 --6. Get the names of customers who have never placed an order. Use an outer join.
