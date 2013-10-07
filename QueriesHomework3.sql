@@ -62,7 +62,7 @@ from customers c,
      products p
 where c.city = p.city
 group by c.name, p.city, c.city
-order by count(p.city)
+order by count(p.city) asc
 limit 2
 --10. Get the name and city of customers who live in a city where the most number of products are made.
 select c.name, count(p.city), c.city
@@ -70,16 +70,17 @@ from customers c,
      products p
 where c.city = p.city
 group by c.name, p.city, c.city
-order by count(p.city)
-limit 1
-Testtinggingignie
+order by count(p.city) DESC
+limit 2
 --11. Get the name and city of customers who live in any city where the most number of products are made.
 select c.name, c.city
 from customers c,
      products p
 where c.city = p.city and 
-      p.quantity in (select max(quantity) 
+      p.city in (select max((select city
+                             from products)) 
                      from products) 
+limit 1
 --12. List the products whose priceUSD is above the average priceUSD.
 select *
 from products p
