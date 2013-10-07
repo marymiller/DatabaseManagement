@@ -76,11 +76,16 @@ limit 2
 select c.name, c.city
 from customers c,
      products p
-where c.city = p.city and 
-      p.city in (select max((select city
-                             from products)) 
-                     from products) 
-limit 1
+where c.city = p.city 
+      (select city
+                        from products
+                         group by city
+                         having count(city) in
+      (select max("CityCount")
+                from (select count(city) as "CityCount"
+                         from products
+                         group by city)sub1))
+                         
 --12. List the products whose priceUSD is above the average priceUSD.
 select *
 from products p
@@ -117,6 +122,7 @@ from orders o,
      customers c
 where o.pid = p.pid
   and c.cid = o.cid
+  and o.dollars != 'Actual Price'
 --17. Create an error in the dollars column of the Orders table so that you can verify your accuracy checking query. 
 INSERT INTO Orders( ordno, mon, cid, aid, pid, qty, dollars )
   VALUES(1027, 'jan', 'c001', 'a01', 'p01', 1000, 550.00);
