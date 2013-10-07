@@ -80,11 +80,12 @@ where c.city = p.city
     and c.city in (select city
                         from products
                          group by city
-                         having count(city) in
-      (select max("CityCount")
-                from (select count(city) as "CityCount"
-                         from products
-                         group by city)sub1))
+                         having count(city) in (select max("CityCount")
+                                               from (select count(city) as "CityCount"
+                                               from products
+                                               group by city)sub1
+                                               )
+                  )
                          
 --12. List the products whose priceUSD is above the average priceUSD.
 select *
