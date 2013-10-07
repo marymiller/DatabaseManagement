@@ -63,7 +63,7 @@ from customers c,
 where c.city = p.city
 group by c.name, p.city, c.city
 order by count(p.city)
-limit 1
+limit 2
 --10. Get the name and city of customers who live in a city where the most number of products are made.
 select c.name, count(p.city), c.city
 from customers c,
@@ -72,6 +72,7 @@ where c.city = p.city
 group by c.name, p.city, c.city
 order by count(p.city)
 limit 1
+Testtinggingignie
 --11. Get the name and city of customers who live in any city where the most number of products are made.
 select c.name, c.city
 from customers c,
